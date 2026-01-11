@@ -34,9 +34,21 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="profile-picture">
-                <div style="width: 200px; height: 200px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 4px solid rgba(255,255,255,0.3); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
-                    <img src="profile.jpg" alt="Leonix Asongwe" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
-                </div>
+                <picture>
+                    <img src="profile.jpg" alt="Leonix Asongwe" onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
+                </picture>
+                <svg id="avatar-fallback" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="display: none; width: 200px; height: 200px;">
+                    <defs>
+                        <linearGradient id="avatarGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ffed4e;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="100" fill="white" opacity="0.95"/>
+                    <circle cx="100" cy="65" r="28" fill="#333"/>
+                    <ellipse cx="100" cy="145" rx="40" ry="50" fill="#333"/>
+                    <text x="100" y="80" font-size="48" font-weight="700" text-anchor="middle" fill="url(#avatarGradient2)" font-family="Inter, sans-serif">LA</text>
+                </svg>
             </div>
             <div class="hero-content">
                 <h1 class="hero-title">
@@ -419,6 +431,7 @@
                 <div class="footer-section">
                     <h3>Platform Engineer</h3>
                     <p>Building the future of cloud infrastructure and developer experience.</p>
+                    <p><strong>Email:</strong> <a href="mailto:leonix23@gmail.com">leonix23@gmail.com</a></p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -432,9 +445,9 @@
                 <div class="footer-section">
                     <h4>Connect</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/leonix33" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/leonix-asongwe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:leonix23@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
