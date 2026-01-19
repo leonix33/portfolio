@@ -177,176 +177,18 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
+            <h2 class="section-title">All Projects</h2>
+            <div id="projects-filter" class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+                <button class="filter-btn" data-filter="devops">DevOps</button>
+                <button class="filter-btn" data-filter="data">Data</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+            </div>
+            <div class="projects-grid" id="projects-grid">
                 
-                <!-- Project 1: Zero Trust K8s IDP -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Zero-Trust GitOps Internal Developer Platform</h3>
-                            <p class="project-type">Enterprise Platform</p>
-                        </div>
-                    </div>
-                    <div class="project-description">
-                        <p>Complete enterprise-grade Internal Developer Platform built on GKE with Zero-Trust security principles and GitOps automation.</p>
-                        <div class="project-features">
-                            <span>Zero-Trust Security</span>
-                            <span>GitOps with ArgoCD</span>
-                            <span>LGTM Observability Stack</span>
-                            <span>Policy as Code</span>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag">GKE</span>
-                        <span class="tech-tag">ArgoCD</span>
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">Prometheus</span>
-                        <span class="tech-tag">Grafana</span>
-                        <span class="tech-tag">Vault</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/leonix33/Labk8" class="btn btn-outline"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://github.com/leonix33/Labk8" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Documentation</a>
-                    </div>
-                </div>
-
-                <!-- Project 2: Databricks Analytics Platform -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <div class="project-meta">
-                            <h3>End-to-End Analytics Platform on GCP</h3>
-                            <p class="project-type">Data Engineering</p>
-                        </div>
-                    </div>
-                    <div class="project-description">
-                        <p>Comprehensive data analytics platform with Databricks on GCP, featuring automated infrastructure deployment, real-time streaming, and ML pipelines.</p>
-                        <div class="project-features">
-                            <span>Real-time Kafka Streaming</span>
-                            <span>Infrastructure as Code</span>
-                            <span>ML Pipeline Automation</span>
-                            <span>Delta Lake Architecture</span>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Databricks</span>
-                        <span class="tech-tag">Apache Kafka</span>
-                        <span class="tech-tag">GCP</span>
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">Apache Spark</span>
-                        <span class="tech-tag">MLflow</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/leonix33/LANE-Gcp-Databricks" class="btn btn-outline"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://github.com/leonix33/LANE-Gcp-Databricks" class="btn btn-outline"><i class="fas fa-book"></i> Documentation</a>
-                    </div>
-                </div>
-
-                <!-- Project 3: Platform Toolkit -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-toolbox"></i>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Platform Toolkit - Records Management System</h3>
-                            <p class="project-type">Enterprise Tooling</p>
-                        </div>
-                    </div>
-                    <div class="project-description">
-                        <p>Comprehensive cross-platform toolkit for records management with threat detection capabilities, automation pipelines, and security monitoring integration.</p>
-                        <div class="project-features">
-                            <span>Threat Detection Pipeline</span>
-                            <span>Windows/macOS Support</span>
-                            <span>Automated Workflows</span>
-                            <span>Security Integration</span>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag">PowerShell</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Shell</span>
-                        <span class="tech-tag">WiX Installer</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/leonix33/Threat-detection-pipeline-" class="btn btn-outline"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://github.com/leonix33/Threat-detection-pipeline-" class="btn btn-outline"><i class="fas fa-book"></i> Documentation</a>
-                    </div>
-                </div>
-
-                <!-- Project 4: GCP Terraform Infrastructure -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <div class="project-meta">
-                            <h3>GCP Terraform Infrastructure with Drift Detection</h3>
-                            <p class="project-type">Infrastructure as Code</p>
-                        </div>
-                    </div>
-                    <div class="project-description">
-                        <p>Terraform-driven workspace automation for Google Cloud Platform featuring automated deployment, comprehensive monitoring, and infrastructure drift detection mechanisms.</p>
-                        <div class="project-features">
-                            <span>Infrastructure as Code</span>
-                            <span>Automated Deployment Scripts</span>
-                            <span>Drift Detection System</span>
-                            <span>Cloud Monitoring Integration</span>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">GCP</span>
-                        <span class="tech-tag">Compute Engine</span>
-                        <span class="tech-tag">Cloud Monitoring</span>
-                        <span class="tech-tag">VPC Networking</span>
-                        <span class="tech-tag">Bash Scripting</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/leonix33/-gcp-terraform-infra" class="btn btn-outline"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://github.com/leonix33/-gcp-terraform-infra" class="btn btn-outline"><i class="fas fa-book"></i> Documentation</a>
-                    </div>
-                </div>
-
-                <!-- Project 5: Automation & Deployment Scripts -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Automation & Deployment Scripts</h3>
-                            <p class="project-type">DevOps Tooling</p>
-                        </div>
-                    </div>
-                    <div class="project-description">
-                        <p>Collection of production-ready automation and deployment scripts for AWS, GCP, and Kubernetes infrastructure management with built-in error handling and monitoring.</p>
-                        <div class="project-features">
-                            <span>Multi-cloud Support</span>
-                            <span>Production-ready</span>
-                            <span>Error Handling</span>
-                            <span>Monitoring Integration</span>
-                        </div>
-                    </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Bash</span>
-                        <span class="tech-tag">PowerShell</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">GCP</span>
-                        <span class="tech-tag">Kubernetes</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/leonix33/keyvault-automation-monitoring" class="btn btn-outline"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://github.com/leonix33/keyvault-automation-monitoring" class="btn btn-outline"><i class="fas fa-book"></i> Documentation</a>
-                    </div>
-                </div>
+                <!-- Projects will be loaded dynamically by JavaScript -->
 
             </div>
         </div>

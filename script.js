@@ -315,3 +315,123 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
+// GitHub Projects Fetching and Display
+const GITHUB_USERNAME = 'leonix33';
+const PROJECT_CATEGORIES = {
+    'infrastructure': ['terraform', 'gcp', 'aws', 'infrastructure', 'cloud'],
+    'devops': ['devops', 'jenkins', 'k8s', 'kubernetes', 'deployment', 'docker', 'ci/cd'],
+    'data': ['databricks', 'kafka', 'spark', 'analytics', 'pipeline'],
+    'security': ['security', 'vault', 'zero-trust', 'threat', 'detection'],
+    'web': ['portfolio', 'html', 'website']
+};
+
+async function fetchGitHubProjects() {
+    try {
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
+        const projects = await response.json();
+        
+        // Filter and categorize projects
+        const categorizedProjects = projects.map(project => {
+            let category = 'other';
+            const nameAndDesc = `${project.name} ${project.description || ''}`.toLowerCase();
+            
+            for (const [cat, keywords] of Object.entries(PROJECT_CATEGORIES)) {
+                if (keywords.some(keyword => nameAndDesc.includes(keyword))) {
+                    category = cat;
+                    break;
+                }
+            }
+            
+            return {
+                ...project,
+                category
+            };
+        }).filter(p => !p.fork || p.stargazers_count > 0); // Show original repos + starred forks
+
+        displayProjects(categorizedProjects);
+        setupFilterButtons(categorizedProjects);
+    } catch (error) {
+        console.error('Error fetching GitHub projects:', error);
+    }
+}
+
+function displayProjects(projects, filter = 'all') {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    
+    const filteredProjects = filter === 'all' 
+        ? projects 
+        : projects.filter(p => p.category === filter);
+    
+    filteredProjects.forEach(project => {
+        const languages = project.language ? [project.language] : [];
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.setAttribute('data-category', project.category);
+        
+        const description = project.description || 'A GitHub project by leonix33';
+        
+        card.innerHTML = `
+            <div class="project-header">
+                <div class="project-icon">
+                    ${getCategoryIcon(project.category)}
+                </div>
+                <div class="project-meta">
+                    <h3>${project.name}</h3>
+                    <p class="project-type">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</p>
+                </div>
+            </div>
+            <div class="project-description">
+                <p>${description.substring(0, 150)}${description.length > 150 ? '...' : ''}</p>
+            </div>
+            <div class="tech-stack">
+                ${languages.map(lang => `<span class="tech-tag">${lang}</span>`).join('')}
+                ${project.topics?.slice(0, 3).map(topic => `<span class="tech-tag">${topic}</span>`).join('')}
+            </div>
+            <div class="project-stats">
+                <span><i class="fas fa-star"></i> ${project.stargazers_count}</span>
+                <span><i class="fas fa-code-branch"></i> ${project.forks_count}</span>
+                <span><i class="fas fa-eye"></i> ${project.watchers_count}</span>
+            </div>
+            <div class="project-links">
+                <a href="${project.html_url}" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+        `;
+        
+        grid.appendChild(card);
+    });
+}
+
+function getCategoryIcon(category) {
+    const icons = {
+        'infrastructure': '<i class="fas fa-cloud"></i>',
+        'devops': '<i class="fas fa-cogs"></i>',
+        'data': '<i class="fas fa-database"></i>',
+        'security': '<i class="fas fa-shield-alt"></i>',
+        'web': '<i class="fas fa-globe"></i>',
+        'other': '<i class="fas fa-folder"></i>'
+    };
+    return icons[category] || icons.other;
+}
+
+function setupFilterButtons(projects) {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            displayProjects(projects, filter);
+        });
+    });
+}
+
+// Initialize projects on page load
+document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
