@@ -319,9 +319,9 @@ if ('serviceWorker' in navigator) {
 // GitHub Projects Fetching and Display
 const GITHUB_USERNAME = 'leonix33';
 const PROJECT_CATEGORIES = {
-    'infrastructure': ['terraform', 'gcp', 'aws', 'infrastructure', 'cloud'],
+    'infrastructure': ['terraform', 'gcp', 'aws', 'infrastructure', 'cloud', 'azure', 'etl'],
     'devops': ['devops', 'jenkins', 'k8s', 'kubernetes', 'deployment', 'docker', 'ci/cd'],
-    'data': ['databricks', 'kafka', 'spark', 'analytics', 'pipeline'],
+    'data': ['databricks', 'kafka', 'spark', 'analytics', 'pipeline', 'data-factory', 'fabric'],
     'security': ['security', 'vault', 'zero-trust', 'threat', 'detection'],
     'web': ['portfolio', 'html', 'website']
 };
@@ -331,23 +331,45 @@ async function fetchGitHubProjects() {
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
         const projects = await response.json();
         
+        // Featured projects that should appear first
+        const featuredRepos = [
+            'zero-trust-k8s-idp',
+            'databricks-gcp',
+            'azure-etl-onprem-to-cloud',
+            'aws-devops-agent',
+            'platformtoolkit-records'
+        ];
+        
         // Filter and categorize projects
         const categorizedProjects = projects.map(project => {
             let category = 'other';
             const nameAndDesc = `${project.name} ${project.description || ''}`.toLowerCase();
             
-            for (const [cat, keywords] of Object.entries(PROJECT_CATEGORIES)) {
-                if (keywords.some(keyword => nameAndDesc.includes(keyword))) {
-                    category = cat;
-                    break;
+            // Special handling for Azure ETL project
+            if (project.name === 'azure-etl-onprem-to-cloud') {
+                category = 'infrastructure';
+            } else {
+                for (const [cat, keywords] of Object.entries(PROJECT_CATEGORIES)) {
+                    if (keywords.some(keyword => nameAndDesc.includes(keyword))) {
+                        category = cat;
+                        break;
+                    }
                 }
             }
             
             return {
                 ...project,
-                category
+                category,
+                isFeatured: featuredRepos.includes(project.name)
             };
         }).filter(p => !p.fork || p.stargazers_count > 0); // Show original repos + starred forks
+        
+        // Sort: featured projects first, then by update date
+        categorizedProjects.sort((a, b) => {
+            if (a.isFeatured && !b.isFeatured) return -1;
+            if (!a.isFeatured && b.isFeatured) return 1;
+            return new Date(b.updated_at) - new Date(a.updated_at);
+        });
 
         displayProjects(categorizedProjects);
         setupFilterButtons(categorizedProjects);
@@ -372,10 +394,16 @@ function displayProjects(projects, filter = 'all') {
         card.className = 'project-card';
         card.setAttribute('data-category', project.category);
         
+        // Add featured badge
+        const featuredBadge = project.isFeatured 
+            ? '<span class="featured-badge">Featured</span>' 
+            : '';
+        
         const description = project.description || 'A GitHub project by leonix33';
         
         card.innerHTML = `
             <div class="project-header">
+                ${featuredBadge}
                 <div class="project-icon">
                     ${getCategoryIcon(project.category)}
                 </div>
