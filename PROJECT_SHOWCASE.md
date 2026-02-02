@@ -62,7 +62,26 @@ This portfolio showcases my expertise as a Senior Platform Engineer with extensi
 
 - **Impact**: Enabled real-time analytics, reduced data processing costs by 40%, improved data quality and governance
 
-### 3. AWS DevOps Agent Investigation Platform
+### 3. Azure ETL: On-Premise to Cloud Migration
+**Enterprise Data Integration Platform**
+
+- **Objective**: Build complete end-to-end ETL solution for migrating on-premise data to Azure Cloud
+- **Tech Stack**: Azure Data Factory, Self-Hosted Integration Runtime, Azure SQL Database, Data Lake Gen2, Azure Databricks, Microsoft Fabric, Terraform
+- **Key Features**:
+  - Self-Hosted Integration Runtime for secure on-premise connectivity
+  - Medallion architecture (Bronze/Silver/Gold) with Data Lake Gen2
+  - Azure Databricks with Delta Lake for big data processing
+  - Microsoft Fabric unified analytics platform with OneLake integration
+  - Comprehensive monitoring with Log Analytics, Application Insights, Azure Monitor
+  - Automated alerts for pipeline failures, performance issues, and cost overruns
+  - Infrastructure as Code with Terraform (800+ lines, 11 modules)
+  - Secure secret management with Azure Key Vault
+  - Cost optimization with automated VM shutdown
+
+- **Impact**: Enabled secure on-premise to cloud migration, real-time data processing with Direct Lake mode, unified analytics platform, production-ready monitoring and alerting
+- **GitHub**: [azure-etl-onprem-to-cloud](https://github.com/leonix33/azure-etl-onprem-to-cloud)
+
+### 4. GCP Terraform Infrastructure with Drift Detection
 **Autonomous Incident Response System**
 
 - **Objective**: Demonstrate AWS DevOps Agent capabilities for automated incident investigation
@@ -77,7 +96,7 @@ This portfolio showcases my expertise as a Senior Platform Engineer with extensi
 
 - **Impact**: Reduced mean time to resolution (MTTR) by 60%, improved operational efficiency
 
-### 4. GCP Terraform Infrastructure with Drift Detection
+### 5. GCP Terraform Infrastructure with Drift Detection
 **Infrastructure as Code Automation Platform**
 
 - **Objective**: Create a comprehensive Terraform-driven infrastructure with automated drift detection
@@ -94,7 +113,7 @@ This portfolio showcases my expertise as a Senior Platform Engineer with extensi
 
 - **Impact**: Enabled repeatable infrastructure deployments, automated drift detection for compliance, improved infrastructure consistency
 
-### 5. Platform Engineer Toolkit
+### 6. Platform Engineer Toolkit
 **Cross-Platform Development Tool Manager**
 
 - **Objective**: Automate installation and management of development tools across Windows and macOS
@@ -148,6 +167,14 @@ Google Cloud Platform:
 ├── AI/ML: Vertex AI, AutoML
 ├── Security: Cloud Armor, Binary Authorization
 └── Monitoring: Cloud Monitoring, Cloud Logging
+
+Microsoft Azure:
+├── Compute: Virtual Machines, AKS, Functions
+├── Storage: Blob Storage, Data Lake Gen2, SQL Database
+├── Data: Data Factory, Databricks, Synapse Analytics, Microsoft Fabric
+├── Integration: Self-Hosted Integration Runtime, Logic Apps
+├── Security: Key Vault, Managed Identity, Network Security Groups
+└── Monitoring: Monitor, Log Analytics, Application Insights
 
 Kubernetes Ecosystem:
 ├── Orchestration: GKE, EKS, AKS
