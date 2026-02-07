@@ -56,6 +56,10 @@ Platform Engineer Toolkit
 Cross-platform toolkit for automating development tools installation and management.
 Link: https://github.com/leonix33/Threat-detection-pipeline-
 
+Azure ETL: On-Premise to Cloud Migration
+End-to-end Azure ETL with ADF, SHIR, Key Vault, monitoring, and AI Search + OpenAI RAG.
+Link: https://github.com/leonix33/azure-etl-onprem-to-cloud
+
 ## Connect With Me
 
 Portfolio: leonix.online
