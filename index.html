@@ -56,7 +56,7 @@
                         <p>Projects Completed</p>
                     </div>
                     <div class="stat">
-                        <h3>5</h3>
+                        <h3>6</h3>
                         <p>Featured Projects</p>
                     </div>
                 </div>
@@ -178,6 +178,34 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">All Projects</h2>
+            <div class="featured-spotlight">
+                <div class="spotlight-card">
+                    <div class="spotlight-header">
+                        <div>
+                            <span class="spotlight-tag">Featured</span>
+                            <h3>Enterprise Databricks Lakehouse Platform</h3>
+                            <p>CloudFormation-first, multi-account AWS lakehouse with Unity Catalog governance, medallion architecture, and workflow-based extraction.</p>
+                        </div>
+                        <div class="spotlight-actions">
+                            <a class="btn btn-primary" href="https://github.com/leonix33/databricks-lakehouse-platform" target="_blank" rel="noopener">View Repo</a>
+                            <a class="btn btn-secondary" href="#contact">Discuss</a>
+                        </div>
+                    </div>
+                    <div class="spotlight-badges">
+                        <span class="badge">CloudFormation</span>
+                        <span class="badge">Unity Catalog</span>
+                        <span class="badge">Delta + Iceberg</span>
+                        <span class="badge">Cross-Account IAM</span>
+                        <span class="badge">Monitoring</span>
+                    </div>
+                    <ul class="spotlight-list">
+                        <li>Nested stacks for VPC, IAM, and data lake provisioning</li>
+                        <li>Unity Catalog external locations and RBAC setup automation</li>
+                        <li>Databricks workflows to eliminate Lambda timeout bottlenecks</li>
+                        <li>CloudWatch dashboards, alarms, and SNS alerting</li>
+                    </ul>
+                </div>
+            </div>
             <div id="projects-filter" class="projects-filter">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>

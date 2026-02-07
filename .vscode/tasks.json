@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "git-commit-push-portfolio",
+			"type": "shell",
+			"command": "git add . && git commit -m \"Update portfolio featured projects\" && git push origin main",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
+		}
+	]
+}

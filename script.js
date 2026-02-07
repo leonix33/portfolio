@@ -12,6 +12,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+const prefersReducedMotion = true;
+
 // Mobile navigation toggle
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
@@ -31,39 +33,58 @@ if (hamburger && navMenu) {
     });
 }
 
-// Navbar scroll effect
+// Navbar scroll effect (throttled)
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        if (!prefersReducedMotion) {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const rate = window.pageYOffset * -0.5;
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        }
+
+        scrollTicking = false;
+    });
 });
 
 // Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+if (!prefersReducedMotion) {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
-        }
-    });
-}, observerOptions);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+            }
+        });
+    }, observerOptions);
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .expertise-item');
-    elementsToAnimate.forEach(el => {
-        observer.observe(el);
+    // Observe elements for animation
+    document.addEventListener('DOMContentLoaded', () => {
+        const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .expertise-item');
+        elementsToAnimate.forEach(el => {
+            observer.observe(el);
+        });
     });
-});
+}
 
 // Form handling
 const contactForm = document.querySelector('.contact-form form');
@@ -98,7 +119,7 @@ if (contactForm) {
         // Simulate API call
         setTimeout(() => {
             alert('Thank you for your message! I\'ll get back to you soon.');
-            this.reset();
+            reset();
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }, 2000);
@@ -111,54 +132,11 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Typing animation for hero section
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    type();
-}
+// Typing animation disabled for stability
 
-// Initialize typing animation when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        // Small delay before starting animation
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText, 50);
-        }, 500);
-    }
-});
+// Skill tag hover effects disabled for stability
 
-// Skill tag hover effects
-document.querySelectorAll('.skill-tag').forEach(tag => {
-    tag.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) translateY(-2px)';
-    });
-    
-    tag.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1) translateY(0)';
-    });
-});
-
-// Project card tilt effect
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) rotateX(5deg)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) rotateX(0)';
-    });
-});
+// Project card tilt effect (disabled for stability)
 
 // Counter animation for hero stats
 function animateCounter(element, target, duration = 2000) {
@@ -178,55 +156,9 @@ function animateCounter(element, target, duration = 2000) {
     updateCounter();
 }
 
-// Initialize counter animations when hero section is visible
-const heroObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const counters = entry.target.querySelectorAll('.stat h3');
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent.replace('+', ''));
-                const suffix = counter.textContent.includes('+') ? '+' : '';
-                animateCounter(counter, target);
-                // Add suffix back after animation
-                setTimeout(() => {
-                    counter.textContent = target + suffix;
-                }, 2100);
-            });
-            heroObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
+// Counter animations disabled for stability
 
-document.addEventListener('DOMContentLoaded', () => {
-    const heroStats = document.querySelector('.hero-stats');
-    if (heroStats) {
-        heroObserver.observe(heroStats);
-    }
-});
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const rate = scrolled * -0.5;
-    
-    if (hero) {
-        hero.style.transform = `translateY(${rate}px)`;
-    }
-});
-
-// Add loading class to elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const elementsToLoad = document.querySelectorAll('.skill-category, .project-card, .expertise-item, .contact-method');
-    
-    elementsToLoad.forEach((el, index) => {
-        el.classList.add('loading');
-        // Stagger the animations
-        setTimeout(() => {
-            el.classList.add('visible');
-        }, index * 100);
-    });
-});
+// Loading animations disabled for stability
 
 // Copy email to clipboard functionality
 function copyToClipboard(text) {
@@ -335,13 +267,41 @@ async function fetchGitHubProjects() {
         const featuredRepos = [
             'zero-trust-k8s-idp',
             'databricks-gcp',
+            'databricks-lakehouse-platform',
             'azure-etl-onprem-to-cloud',
             'aws-devops-agent',
             'platformtoolkit-records'
         ];
+
+        const manualFeaturedProjects = [
+            {
+                name: 'azure-etl-onprem-to-cloud',
+                html_url: 'https://github.com/leonix33/azure-etl-onprem-to-cloud',
+                description: 'End-to-end Azure ETL platform with ADF, SHIR, Key Vault, and monitoring. Includes AI Search + OpenAI RAG.',
+                language: 'Terraform',
+                topics: ['azure', 'data-factory', 'etl', 'databricks', 'rag'],
+                stargazers_count: 0,
+                forks_count: 0,
+                watchers_count: 0,
+                updated_at: new Date().toISOString(),
+                license: { spdx_id: 'MIT' },
+                size: 0,
+                open_issues_count: 0,
+                private: false,
+                homepage: ''
+            }
+        ];
         
         // Filter and categorize projects
-        const categorizedProjects = projects.map(project => {
+        const repoMap = new Map();
+        projects.forEach(project => repoMap.set(project.name, project));
+        manualFeaturedProjects.forEach(project => {
+            if (!repoMap.has(project.name)) {
+                repoMap.set(project.name, project);
+            }
+        });
+
+        const categorizedProjects = Array.from(repoMap.values()).map(project => {
             let category = 'other';
             const nameAndDesc = `${project.name} ${project.description || ''}`.toLowerCase();
             
@@ -387,8 +347,10 @@ function displayProjects(projects, filter = 'all') {
     const filteredProjects = filter === 'all' 
         ? projects 
         : projects.filter(p => p.category === filter);
+
+    const limitedProjects = filteredProjects.slice(0, 24);
     
-    filteredProjects.forEach(project => {
+    limitedProjects.forEach(project => {
         const languages = project.language ? [project.language] : [];
         const card = document.createElement('div');
         card.className = 'project-card';
@@ -400,6 +362,13 @@ function displayProjects(projects, filter = 'all') {
             : '';
         
         const description = project.description || 'A GitHub project by leonix33';
+        const updatedLabel = formatDate(project.updated_at);
+        const licenseLabel = project.license?.spdx_id && project.license.spdx_id !== 'NOASSERTION'
+            ? project.license.spdx_id
+            : 'No license';
+        const sizeLabel = project.size ? formatSize(project.size) : 'n/a';
+        const issuesLabel = project.open_issues_count ?? 0;
+        const hasHomepage = project.homepage && project.homepage.trim().length > 0;
         
         card.innerHTML = `
             <div class="project-header">
@@ -410,6 +379,10 @@ function displayProjects(projects, filter = 'all') {
                 <div class="project-meta">
                     <h3>${project.name}</h3>
                     <p class="project-type">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</p>
+                    <div class="project-badges">
+                        <span class="badge">Updated ${updatedLabel}</span>
+                        <span class="badge">${licenseLabel}</span>
+                    </div>
                 </div>
             </div>
             <div class="project-description">
@@ -418,6 +391,20 @@ function displayProjects(projects, filter = 'all') {
             <div class="tech-stack">
                 ${languages.map(lang => `<span class="tech-tag">${lang}</span>`).join('')}
                 ${project.topics?.slice(0, 3).map(topic => `<span class="tech-tag">${topic}</span>`).join('')}
+            </div>
+            <div class="project-kpis">
+                <div class="kpi">
+                    <span class="kpi-label">Size</span>
+                    <span class="kpi-value">${sizeLabel}</span>
+                </div>
+                <div class="kpi">
+                    <span class="kpi-label">Issues</span>
+                    <span class="kpi-value">${issuesLabel}</span>
+                </div>
+                <div class="kpi">
+                    <span class="kpi-label">Visibility</span>
+                    <span class="kpi-value">${project.private ? 'Private' : 'Public'}</span>
+                </div>
             </div>
             <div class="project-stats">
                 <span><i class="fas fa-star"></i> ${project.stargazers_count}</span>
@@ -428,6 +415,9 @@ function displayProjects(projects, filter = 'all') {
                 <a href="${project.html_url}" target="_blank" class="btn btn-outline">
                     <i class="fab fa-github"></i> View Code
                 </a>
+                ${hasHomepage ? `<a href="${project.homepage}" target="_blank" class="btn btn-secondary">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>` : ''}
             </div>
         `;
         
@@ -445,6 +435,19 @@ function getCategoryIcon(category) {
         'other': '<i class="fas fa-folder"></i>'
     };
     return icons[category] || icons.other;
+}
+
+function formatDate(isoDate) {
+    if (!isoDate) return 'N/A';
+    const date = new Date(isoDate);
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+function formatSize(sizeInKb) {
+    if (!sizeInKb && sizeInKb !== 0) return 'n/a';
+    if (sizeInKb < 1024) return `${sizeInKb} KB`;
+    const mb = (sizeInKb / 1024).toFixed(1);
+    return `${mb} MB`;
 }
 
 function setupFilterButtons(projects) {

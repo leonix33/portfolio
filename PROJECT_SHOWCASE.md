@@ -113,7 +113,23 @@ This portfolio showcases my expertise as a Senior Platform Engineer with extensi
 
 - **Impact**: Enabled repeatable infrastructure deployments, automated drift detection for compliance, improved infrastructure consistency
 
-### 6. Platform Engineer Toolkit
+### 6. Enterprise Databricks Lakehouse Platform on AWS
+**CloudFormation-Based Multi-Account Data Platform**
+
+- **Objective**: Build a production-ready Databricks lakehouse platform for Gov/Commercial AWS accounts
+- **Tech Stack**: AWS (S3, IAM, CloudFormation, Lambda, DynamoDB), Databricks, Unity Catalog, Spark, Iceberg, Delta Lake
+- **Key Features**:
+  - CloudFormation-based infrastructure provisioning with nested stacks
+  - Unity Catalog governance with external locations and RBAC
+  - Medallion architecture (Bronze/Silver/Gold) with lifecycle policies
+  - Workflow-based extraction to solve Lambda timeout constraints
+  - Unstructured metadata processing pipeline with DynamoDB
+  - Monitoring and alerting with CloudWatch + SNS
+
+- **Impact**: Eliminated pipeline timeouts, unified governance, and enabled scalable analytics/AI workloads
+- **GitHub**: [databricks-lakehouse-platform](https://github.com/leonix33/databricks-lakehouse-platform)
+
+### 7. Platform Engineer Toolkit
 **Cross-Platform Development Tool Manager**
 
 - **Objective**: Automate installation and management of development tools across Windows and macOS
