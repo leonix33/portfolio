@@ -315,12 +315,14 @@ const PROJECT_DETAILS = {
         impact: 'Enabled real-time analytics and improved data quality with standardized pipelines.'
     },
     'aws-devops-agent': {
-        overview: 'Autonomous incident investigation platform for detecting issues, correlating signals, and accelerating root-cause analysis.',
+        overview: 'Autonomous incident investigation platform for detecting issues, correlating signals, and accelerating root-cause analysis across AWS services.',
         highlights: [
             'Automated incident detection and correlation workflows',
             'Kubernetes and CloudWatch integration',
             'Security-compliant IAM role architecture',
-            'Runbook-driven remediation guidance'
+            'Runbook-driven remediation guidance',
+            'Signal aggregation across logs, metrics, and traces',
+            'Actionable summaries for on-call engineers'
         ],
         stack: ['AWS', 'CloudWatch', 'Lambda', 'Kubernetes', 'IAM'],
         useCases: ['Incident response automation', 'Operational visibility', 'Root-cause analysis'],
@@ -333,12 +335,68 @@ const PROJECT_DETAILS = {
             'Windows MSI installer with WiX Toolset',
             'macOS automation via Homebrew',
             'User-level installs with rollback support',
-            'Version tracking and update orchestration'
+            'Version tracking and update orchestration',
+            'Idempotent installs with safe re-runs',
+            'Standardized dev toolchains across teams'
         ],
         stack: ['PowerShell', 'Bash', 'WiX Toolset', 'Homebrew'],
         useCases: ['Developer onboarding', 'Toolchain standardization', 'Automated updates'],
         architecture: 'Installer pipelines with platform-specific runtimes and shared configuration data.',
         impact: 'Cut onboarding time from days to minutes with consistent toolchains.'
+    },
+    'Threat-detection-pipeline-': {
+        overview: 'Platform Engineer Toolkit for automating development tools installation and management across Windows and macOS.',
+        highlights: [
+            'Cross-platform installer flows for Windows and macOS',
+            'Automated dependency resolution and environment setup',
+            'Version pinning and safe upgrade paths',
+            'Self-service tooling for faster onboarding',
+            'Documentation and scripts for repeatable installs'
+        ],
+        stack: ['PowerShell', 'Bash', 'WiX Toolset', 'Homebrew'],
+        useCases: ['Developer onboarding', 'Standardized environments', 'Toolchain governance'],
+        architecture: 'Unified toolkit scripts with OS-specific installers and shared configuration manifests.',
+        impact: 'Reduced setup time and ensured consistent developer environments.'
+    },
+    '-gcp-terraform-infra': {
+        overview: 'Terraform-driven GCP infrastructure automation with drift detection and monitoring integration.',
+        highlights: [
+            'Modular Terraform for VPCs, IAM, and compute',
+            'Drift detection workflows and reporting',
+            'Logging and monitoring baselines',
+            'Reusable patterns for multi-environment rollouts'
+        ],
+        stack: ['Terraform', 'GCP', 'Cloud Monitoring', 'Cloud Logging'],
+        useCases: ['Infrastructure automation', 'Compliance drift detection', 'Environment standardization'],
+        architecture: 'IaC modules provision GCP foundations with automated drift checks and monitoring hooks.',
+        impact: 'Improved consistency and reduced config drift across environments.'
+    },
+    'LANE-Gcp-Databricks': {
+        overview: 'End-to-end analytics platform on GCP with Databricks, real-time streaming, and ML pipelines.',
+        highlights: [
+            'Streaming ingestion with Kafka and structured streaming',
+            'Databricks notebooks and jobs for ELT',
+            'ML pipelines with experiment tracking',
+            'Cost-optimized cluster policies and autoscaling'
+        ],
+        stack: ['GCP', 'Databricks', 'Kafka', 'Spark', 'MLflow'],
+        useCases: ['Real-time analytics', 'ML feature engineering', 'Data product delivery'],
+        architecture: 'Streaming data lands in cloud storage, processed in Databricks, and served to analytics and ML workloads.',
+        impact: 'Enabled near real-time insights and scalable ML experimentation.'
+    },
+    'Labk8': {
+        overview: 'Zero-Trust GitOps internal developer platform on GKE with enterprise security and automation.',
+        highlights: [
+            'GitOps app-of-apps with ArgoCD',
+            'Policy-as-code with Kyverno and admission controls',
+            'Workload Identity and Binary Authorization',
+            'End-to-end observability stack',
+            'Automated TLS and secret management'
+        ],
+        stack: ['GKE', 'ArgoCD', 'Kyverno', 'Prometheus', 'Grafana', 'Vault'],
+        useCases: ['Secure platform operations', 'GitOps delivery', 'Multi-tenant Kubernetes'],
+        architecture: 'GKE clusters managed through GitOps with security guardrails, observability, and automated governance.',
+        impact: 'Faster deployments with stronger compliance and auditability.'
     }
 };
 

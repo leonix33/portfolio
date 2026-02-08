@@ -24,6 +24,14 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "none"
+		},
+		{
+			"label": "git-commit-push-portfolio-more-details",
+			"type": "shell",
+			"command": "git add . && git commit -m \"Add detailed outlines and OpenAI skill\" && git push origin master:main",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
 		}
 	]
 }
