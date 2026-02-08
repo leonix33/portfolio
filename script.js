@@ -258,6 +258,90 @@ const PROJECT_CATEGORIES = {
     'web': ['portfolio', 'html', 'website']
 };
 
+const PROJECT_DETAILS = {
+    'databricks-lakehouse-platform': {
+        overview: 'CloudFormation-first, multi-account AWS lakehouse with Unity Catalog governance, medallion architecture, and workflow-based extraction for scale.',
+        highlights: [
+            'Nested CloudFormation stacks for VPC, IAM, and data lake provisioning',
+            'Unity Catalog setup with external locations and RBAC automation',
+            'Workflows to replace Lambda timeouts on large extractions',
+            'CloudWatch dashboards, alarms, and SNS alerting'
+        ],
+        stack: ['AWS', 'CloudFormation', 'Databricks', 'Unity Catalog', 'Delta Lake', 'Iceberg'],
+        useCases: ['Multi-account data platform', 'Governed analytics', 'Cross-account data access'],
+        architecture: 'Gov and Commercial AWS accounts with cross-account IAM, S3 bronze/silver/gold layers, Databricks workflows, and Unity Catalog control plane.',
+        impact: 'Eliminated pipeline timeouts, unified governance, and enabled scalable analytics and AI workloads.'
+    },
+    'azure-etl-onprem-to-cloud': {
+        overview: 'Enterprise Azure ETL program migrating on‑prem data to cloud with ADF + SHIR ingestion, ADLS Gen2 medallion storage, Databricks/Spark processing, and AI Search + OpenAI RAG for retrieval‑augmented analytics.',
+        highlights: [
+            'Self‑Hosted Integration Runtime for secure on‑prem connectivity and controlled egress',
+            'Medallion architecture (Bronze/Silver/Gold) in ADLS Gen2 with Delta Lake',
+            'Terraform modules covering ADF, Key Vault, AI Search, OpenAI, and monitoring',
+            'RAG UI + API with vector search, citations, and filters for governance',
+            'OpenAI embeddings for semantic retrieval and summarization',
+            'RAG pipelines delivering grounded answers with citations',
+            'Operational monitoring via Log Analytics + Azure Monitor alerts'
+        ],
+        stack: ['Azure Data Factory', 'SHIR', 'ADLS Gen2', 'Databricks', 'Terraform', 'Key Vault', 'Azure AI Search', 'OpenAI'],
+        useCases: ['On‑prem to cloud migration', 'Enterprise ETL governance', 'RAG‑powered analytics'],
+        architecture: 'ADF orchestrates ingestion through SHIR into ADLS Gen2 (Bronze/Silver/Gold). Databricks cleans and curates Delta tables. Key Vault secures secrets. Azure AI Search indexes curated data and OpenAI generates grounded responses with citations.',
+        impact: 'Accelerated migration timelines, improved data reliability, and enabled AI‑assisted discovery for business stakeholders.'
+    },
+    'zero-trust-k8s-idp': {
+        overview: 'Enterprise-grade internal developer platform on GKE using GitOps, policy-as-code, and zero-trust security controls.',
+        highlights: [
+            'App-of-Apps GitOps with ArgoCD',
+            'Workload Identity, Binary Authorization, and Kyverno policies',
+            'Full observability stack (LGTM)',
+            'TLS automation with cert-manager'
+        ],
+        stack: ['GKE', 'ArgoCD', 'Kyverno', 'Prometheus', 'Grafana', 'Vault'],
+        useCases: ['Internal developer platform', 'Secure Kubernetes governance', 'GitOps automation'],
+        architecture: 'GKE clusters with GitOps orchestration, security guardrails, and centralized observability for platform teams.',
+        impact: 'Reduced deployment time from hours to minutes while improving security posture.'
+    },
+    'databricks-gcp': {
+        overview: 'Databricks-based analytics platform on GCP with streaming ingestion, ML orchestration, and cost-optimized clusters.',
+        highlights: [
+            'Kafka streaming ingestion and real-time processing',
+            'MLflow pipelines with reproducible experiments',
+            'Delta Lake ACID tables and time travel',
+            'Terraform-based infrastructure automation'
+        ],
+        stack: ['GCP', 'Databricks', 'Kafka', 'MLflow', 'Delta Lake', 'Terraform'],
+        useCases: ['Real-time analytics', 'MLOps pipelines', 'Cost-optimized compute'],
+        architecture: 'GCP services for networking and storage, Databricks for compute, Kafka for streaming, and MLflow for MLOps.',
+        impact: 'Enabled real-time analytics and improved data quality with standardized pipelines.'
+    },
+    'aws-devops-agent': {
+        overview: 'Autonomous incident investigation platform for detecting issues, correlating signals, and accelerating root-cause analysis.',
+        highlights: [
+            'Automated incident detection and correlation workflows',
+            'Kubernetes and CloudWatch integration',
+            'Security-compliant IAM role architecture',
+            'Runbook-driven remediation guidance'
+        ],
+        stack: ['AWS', 'CloudWatch', 'Lambda', 'Kubernetes', 'IAM'],
+        useCases: ['Incident response automation', 'Operational visibility', 'Root-cause analysis'],
+        architecture: 'Event-driven workflows across AWS services with automation hooks for investigation and reporting.',
+        impact: 'Reduced MTTR and improved operational visibility across services.'
+    },
+    'platformtoolkit-records': {
+        overview: 'Cross-platform toolkit for automating developer tool installation, updates, and environment configuration.',
+        highlights: [
+            'Windows MSI installer with WiX Toolset',
+            'macOS automation via Homebrew',
+            'User-level installs with rollback support',
+            'Version tracking and update orchestration'
+        ],
+        stack: ['PowerShell', 'Bash', 'WiX Toolset', 'Homebrew'],
+        useCases: ['Developer onboarding', 'Toolchain standardization', 'Automated updates'],
+        architecture: 'Installer pipelines with platform-specific runtimes and shared configuration data.',
+        impact: 'Cut onboarding time from days to minutes with consistent toolchains.'
+    }
+};
+
 async function fetchGitHubProjects() {
     try {
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
@@ -362,6 +446,7 @@ function displayProjects(projects, filter = 'all') {
             : '';
         
         const description = project.description || 'A GitHub project by leonix33';
+        const details = getProjectDetails(project);
         const updatedLabel = formatDate(project.updated_at);
         const licenseLabel = project.license?.spdx_id && project.license.spdx_id !== 'NOASSERTION'
             ? project.license.spdx_id
@@ -387,6 +472,38 @@ function displayProjects(projects, filter = 'all') {
             </div>
             <div class="project-description">
                 <p>${description.substring(0, 150)}${description.length > 150 ? '...' : ''}</p>
+            </div>
+            <div class="project-details" aria-hidden="true">
+                <div class="details-section">
+                    <h4 class="details-title">Overview</h4>
+                    <p>${details.overview}</p>
+                </div>
+                <div class="details-section">
+                    <h4 class="details-title">Key Highlights</h4>
+                    <ul class="details-list">
+                        ${details.highlights.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="details-section">
+                    <h4 class="details-title">Stack</h4>
+                    <div class="details-tags">
+                        ${details.stack.map(item => `<span>${item}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="details-section">
+                    <h4 class="details-title">Use Cases</h4>
+                    <ul class="details-list">
+                        ${details.useCases.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="details-section">
+                    <h4 class="details-title">Architecture</h4>
+                    <p>${details.architecture}</p>
+                </div>
+                <div class="details-section">
+                    <h4 class="details-title">Impact</h4>
+                    <p>${details.impact}</p>
+                </div>
             </div>
             <div class="tech-stack">
                 ${languages.map(lang => `<span class="tech-tag">${lang}</span>`).join('')}
@@ -418,11 +535,14 @@ function displayProjects(projects, filter = 'all') {
                 ${hasHomepage ? `<a href="${project.homepage}" target="_blank" class="btn btn-secondary">
                     <i class="fas fa-external-link-alt"></i> Live Demo
                 </a>` : ''}
+                <button class="btn btn-secondary details-toggle" type="button" aria-expanded="false">Read more</button>
             </div>
         `;
         
         grid.appendChild(card);
     });
+
+    setupDetailsToggle();
 }
 
 function getCategoryIcon(category) {
@@ -462,6 +582,65 @@ function setupFilterButtons(projects) {
             displayProjects(projects, filter);
         });
     });
+}
+
+function getProjectDetails(project) {
+    const baseDetails = PROJECT_DETAILS[project.name];
+    if (baseDetails) return baseDetails;
+
+    const topics = project.topics?.slice(0, 6) || [];
+    const topicHighlights = topics.length
+        ? topics.slice(0, 4).map(topic => `Focus area: ${topic}`)
+        : ['Infrastructure automation and platform enablement', 'Security and governance guardrails', 'Operational monitoring and reliability', 'Scalable, reusable delivery patterns'];
+
+    const stack = [];
+    if (project.language) stack.push(project.language);
+    topics.slice(0, 5).forEach(topic => stack.push(topic));
+    const uniqueStack = [...new Set(stack)].slice(0, 6);
+    const fallbackStack = uniqueStack.length ? uniqueStack : ['Terraform', 'Cloud', 'Automation', 'Observability'];
+
+    const useCasesByCategory = {
+        infrastructure: ['Infrastructure automation', 'Environment provisioning', 'Cost optimization'],
+        devops: ['CI/CD enablement', 'Release automation', 'Operational reliability'],
+        data: ['Data pipelines', 'Analytics enablement', 'AI/ML workflows'],
+        security: ['Security posture improvement', 'Policy enforcement', 'Access governance'],
+        web: ['Personal branding', 'UI/UX delivery', 'Content publishing'],
+        other: ['Automation acceleration', 'Reusable tooling', 'Platform enablement']
+    };
+
+    const fallbackUseCases = useCasesByCategory[project.category] || useCasesByCategory.other;
+
+    return {
+        overview: project.description || 'Project focused on infrastructure, automation, and platform enablement.',
+        highlights: topicHighlights,
+        stack: fallbackStack,
+        useCases: fallbackUseCases,
+        architecture: 'Designed with modular components, infrastructure as code, and reusable workflows for consistent delivery.',
+        impact: 'Improves delivery speed, reduces operational toil, and strengthens governance across environments.'
+    };
+}
+
+function setupDetailsToggle() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid || grid.dataset.detailsBound === 'true') return;
+
+    grid.addEventListener('click', (event) => {
+        const button = event.target.closest('.details-toggle');
+        if (!button) return;
+
+        const card = button.closest('.project-card');
+        if (!card) return;
+
+        const details = card.querySelector('.project-details');
+        if (!details) return;
+
+        const isOpen = details.classList.toggle('is-open');
+        details.setAttribute('aria-hidden', String(!isOpen));
+        button.setAttribute('aria-expanded', String(isOpen));
+        button.textContent = isOpen ? 'Hide details' : 'Read more';
+    });
+
+    grid.dataset.detailsBound = 'true';
 }
 
 // Initialize projects on page load

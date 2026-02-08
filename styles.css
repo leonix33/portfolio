@@ -633,6 +633,62 @@ section {
     margin-bottom: 1rem;
 }
 
+.project-details {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin: 1rem 0 1.5rem;
+    display: none;
+}
+
+.project-details.is-open {
+    display: block;
+}
+
+.details-section + .details-section {
+    margin-top: 1rem;
+}
+
+.details-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.35rem;
+}
+
+.project-details p {
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.details-list {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+    color: #475569;
+}
+
+.details-list li {
+    margin-bottom: 0.35rem;
+}
+
+.details-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.details-tags span {
+    background: #e2e8f0;
+    color: #1e293b;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
 .project-features {
     display: flex;
     flex-wrap: wrap;
@@ -717,6 +773,17 @@ section {
 .project-links {
     display: flex;
     gap: 1rem;
+}
+
+.project-links .details-toggle {
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+.project-links .details-toggle:hover {
+    border-color: #2563eb;
+    color: #2563eb;
 }
 
 .project-links .btn {

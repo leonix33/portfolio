@@ -8,6 +8,22 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "none"
+		},
+		{
+			"label": "git-push-portfolio-master-to-main",
+			"type": "shell",
+			"command": "git push origin master:main",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
+		},
+		{
+			"label": "git-commit-push-portfolio-updates",
+			"type": "shell",
+			"command": "git add . && git commit -m \"Update project details and Azure RAG bullets\" && git push origin master:main",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
 		}
 	]
 }
