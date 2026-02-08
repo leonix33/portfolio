@@ -57,6 +57,7 @@ Cross-platform toolkit for automating development tools installation and managem
 Link: https://github.com/leonix33/Threat-detection-pipeline-
 
 Azure ETL: On‑Premise to Cloud Migration — Built an end‑to‑end Azure ETL platform using ADF + SHIR, ADLS Gen2, Key Vault, and Azure SQL with full Terraform automation, monitoring, and cost controls. Added AI Search + OpenAI RAG for document Q&A and operational insight.
+Link: https://github.com/leonix33/azure-etl-onprem-to-cloud
 
 
 ## Connect With Me
