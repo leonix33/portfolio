@@ -1,83 +1,48 @@
-# Hi, I'm Leonix
+# Leonix Asongwe — Online Resume & Portfolio
 
-Senior Platform Engineer | Cloud Infrastructure | DevOps | Data Platforms
+This repository contains the static portfolio published at [leonix.online](https://leonix.online/).
 
-Welcome to my portfolio! I'm passionate about designing and implementing enterprise-scale cloud infrastructure, data analytics platforms, and developer tooling.
+## Profile
 
-## About Me
+Senior Databricks platform engineer, cloud data platform SME, and platform analytics lead with 9+ years of experience across Databricks, Unity Catalog, Microsoft Fabric, Azure, AWS, GCP, Kubernetes, and GenAI/MLOps.
 
-- 8+ years of experience in cloud architecture and platform engineering
-- Expertise in AWS, Google Cloud Platform, Microsoft Azure, and Kubernetes
-- Specialist in Infrastructure as Code, DevOps automation, and data engineering
-- Strong focus on security, scalability, and developer experience
+Selected outcomes include:
 
-## Tech Stack
+- Reduced Databricks compute cost by 25% and data processing time by 35%.
+- Built self-service platform tooling used by dozens of application teams.
+- Reduced projected EHR migration cost by 68% while migrating 200K+ clinical documents.
+- Delivered cloud and data platforms for regulated healthcare and enterprise clients.
 
-Cloud & Infrastructure:
-- AWS (EC2, VPC, IAM, CloudFormation, Lambda)
-- Google Cloud Platform (Compute Engine, BigQuery, Cloud Run)
-- Microsoft Azure (VMs, AKS, Storage)
-- Kubernetes & Container Orchestration
+## Experience
 
-Infrastructure as Code:
-- Terraform, CloudFormation, Helm, Ansible
+- **GE Aerospace** — Senior Databricks Platform Engineer / Cloud Data Platform SME (Consultant), Nov 2025–Nov 2026
+- **Bon Secours Mercy Health** — Lead Cloud Platform Analytics Engineer, Feb 2022–Oct 2025
+- **Wimora** — Senior DevOps Engineer, Aug 2020–Jan 2022
+- **Enterprise OpenEMR platform migration** — Principal Architect (one-year contract)
+- **PRIMUS Global Services** — Cloud Engineer / DevOps, Dec 2016–Jul 2020
 
-Data & Analytics:
-- Databricks, Apache Kafka, Apache Spark, Delta Lake, BigQuery
+## Focus Areas
 
-DevOps & Monitoring:
-- ArgoCD, Prometheus, Grafana, ELK Stack, NGINX
+- Databricks platform administration, Unity Catalog, Delta Lake, and lakehouse governance
+- Microsoft Fabric, OneLake, Power BI, Azure Data Factory, and platform analytics
+- AWS and GCP cloud architecture, Kubernetes, Terraform, and internal developer platforms
+- GenAI/RAG, AWS Bedrock with Anthropic Claude, Azure OpenAI, and MLOps
+- HIPAA, SOC 2, NIST, ISO 27001, DevSecOps, SRE, and FinOps
 
-Security:
-- Zero Trust Architecture, IAM & RBAC, HashiCorp Vault, TLS/mTLS, Policy as Code
+## Certifications & Accreditations
 
-Programming:
-- Python, Go, Bash/Shell, PowerShell, SQL
+Databricks Data + AI Platform Administrator and platform/GenAI accreditations; Microsoft Azure DevOps Engineer Expert, Data Engineer Associate, AI Engineer Associate, and Administrator Associate; AWS Solutions Architect Associate, Developer Associate, SysOps Administrator Associate, and Cloud Practitioner; CKA; Terraform Associate; Security+; Network+; Cloud+; Linux Essentials.
 
-## Featured Projects
+## Education
 
-GCP Terraform Infrastructure with Drift Detection
-Terraform-driven automation for Google Cloud Platform featuring drift detection and comprehensive monitoring.
-Link: https://github.com/leonix33/-gcp-terraform-infra
+- **M.S., Information Technology** — Western Governors University (in progress; expected Dec 2026)
+- **B.S., Mathematics** — University of Yaoundé, Cameroon
 
-End-to-End Analytics Platform on GCP
-Complete data analytics platform with Databricks on GCP, real-time streaming, and ML pipelines.
-Link: https://github.com/leonix33/LANE-Gcp-Databricks
+## Contact
 
-Zero-Trust GitOps Internal Developer Platform
-Enterprise-grade IDP built on GKE with Zero-Trust security and GitOps automation.
-Link: https://github.com/leonix33/Labk8
+- Portfolio: [leonix.online](https://leonix.online/)
+- LinkedIn: [linkedin.com/in/leonix-asongwe](https://www.linkedin.com/in/leonix-asongwe)
+- GitHub: [github.com/leonix33](https://github.com/leonix33)
+- Email: [leonix23@gmail.com](mailto:leonix23@gmail.com)
 
-AWS DevOps Agent Investigation Platform
-Autonomous investigation platform for automated incident detection and root-cause analysis.
-Link: https://github.com/leonix33/aws-devops-agent
-
-Platform Engineer Toolkit
-Cross-platform toolkit for automating development tools installation and management.
-Link: https://github.com/leonix33/Threat-detection-pipeline-
-
-Azure ETL: On‑Premise to Cloud Migration — Built an end‑to‑end Azure ETL platform using ADF + SHIR, ADLS Gen2, Key Vault, and Azure SQL with full Terraform automation, monitoring, and cost controls. Added AI Search + OpenAI RAG for document Q&A and operational insight.
-Link: https://github.com/leonix33/azure-etl-onprem-to-cloud
-
-
-## Connect With Me
-
-Portfolio: https://leonix.online
-LinkedIn: https://www.linkedin.com/in/leonix-asongwe
-Email: leonix23@gmail.com
-GitHub: https://github.com/leonix33
-
-## Interested in Collaboration?
-
-I'm always interested in discussing:
-- Cloud infrastructure projects
-- DevOps automation challenges
-- Data platform architecture
-- Open source contributions
-- Innovative platform engineering solutions
-
-Feel free to reach out. Let's build something amazing together.
-
----
-
-Last updated: January 2026
+The site uses plain HTML, CSS, and JavaScript. Vercel deploys the static files from this repository.

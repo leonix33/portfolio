@@ -138,6 +138,21 @@ html {
     justify-content: center;
 }
 
+.initials {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
 .profile-picture img,
 .profile-picture svg {
     width: 200px;
@@ -179,11 +194,22 @@ html {
 
 .hero-subtitle {
     font-size: 1.25rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     opacity: 0.9;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.hero-location {
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-location a {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .hero-stats {
@@ -348,6 +374,124 @@ section {
     color: #1e293b;
 }
 
+/* Resume Sections */
+.resume-section {
+    padding: 80px 0;
+}
+
+.experience {
+    background: #f8fafc;
+}
+
+.experience-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.experience-card,
+.credential-card,
+.education-card,
+.resume-project-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.experience-card {
+    padding: 2rem;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.experience-header h3,
+.resume-project-card h3 {
+    color: #1e293b;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.experience-company {
+    color: #2563eb;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.experience-dates {
+    color: #64748b;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.experience-intro {
+    color: #475569;
+    margin: 0.5rem 0 1rem;
+}
+
+.resume-bullets {
+    padding-left: 1.25rem;
+    color: #475569;
+}
+
+.resume-bullets li {
+    padding-left: 0.25rem;
+    margin-bottom: 0.55rem;
+}
+
+.experience-tools {
+    color: #475569;
+    margin-top: 1.25rem;
+}
+
+.credentials {
+    background: #f8fafc;
+}
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+.credential-card,
+.education-card {
+    padding: 1.5rem;
+}
+
+.credential-card h3,
+.education-card h3 {
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+}
+
+.credential-card h3 i {
+    color: #2563eb;
+    margin-right: 0.5rem;
+}
+
+.credential-card p,
+.education-card p {
+    color: #475569;
+}
+
+.education-card {
+    margin-top: 1.25rem;
+}
+
+.education-card p + p {
+    margin-top: 0.5rem;
+}
+
+.education-card span {
+    color: #64748b;
+}
+
 /* Skills Section */
 .skills {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -427,6 +571,31 @@ section {
 
 .featured-spotlight {
     margin: 2rem 0 3rem;
+}
+
+.resume-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+.resume-project-card {
+    padding: 1.5rem;
+}
+
+.resume-project-card p {
+    color: #475569;
+    margin-top: 0.75rem;
+}
+
+.resume-project-card .project-outcome {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.resume-project-card .project-badges {
+    margin-top: 1rem;
 }
 
 .spotlight-card {
@@ -939,6 +1108,11 @@ section {
         min-height: 200px;
     }
 
+    .initials {
+        width: 180px;
+        height: 180px;
+    }
+
     .profile-picture svg,
     .profile-picture img {
         min-width: 200px;
@@ -962,6 +1136,14 @@ section {
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .experience-header {
+        flex-direction: column;
+    }
+
+    .experience-card {
+        padding: 1.5rem;
     }
 
     .contact-content {
