@@ -12,6 +12,7 @@ Selected outcomes include:
 - Built self-service platform tooling used by dozens of application teams.
 - Reduced projected EHR migration cost by 68% while migrating 200K+ clinical documents.
 - Delivered cloud and data platforms for regulated healthcare and enterprise clients.
+- Contributed recent healthcare software changes spanning clinical workflow correctness, authorization-aware billing, and auditable EHR migration tooling.
 
 ## Experience
 
@@ -28,6 +29,11 @@ Selected outcomes include:
 - AWS and GCP cloud architecture, Kubernetes, Terraform, and internal developer platforms
 - GenAI/RAG, AWS Bedrock with Anthropic Claude, Azure OpenAI, and MLOps
 - HIPAA, SOC 2, NIST, ISO 27001, DevSecOps, SRE, and FinOps
+- Healthcare application engineering, clinical workflows, billing safeguards, EHR migration, and automated testing
+
+## Recent Healthcare Platform Contributions
+
+Contributed reviewed changes to a healthcare application spanning clinical workflow behavior, authorization-aware billing safeguards, user-access behavior, and auditable EHR migration review tooling. Focused automated validation supported the workflow and migration changes.
 
 ## Certifications & Accreditations
 
